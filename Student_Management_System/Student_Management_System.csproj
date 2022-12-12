@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{853E9E83-4C4D-43DF-85E0-2ED799EDD211}</ProjectGuid>
+    <ProjectGuid>{9852A678-009E-4660-849D-5C570F18506C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Student_Management_System</RootNamespace>
     <AssemblyName>Student_Management_System</AssemblyName>
@@ -46,11 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frm_Add_New_Student.cs">
+    <Compile Include="frm_Add_New_student.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_Add_New_Student.Designer.cs">
-      <DependentUpon>frm_Add_New_Student.cs</DependentUpon>
+    <Compile Include="frm_Add_New_student.Designer.cs">
+      <DependentUpon>frm_Add_New_student.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_Search_Student.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Search_Student.Designer.cs">
+      <DependentUpon>frm_Search_Student.cs</DependentUpon>
     </Compile>
     <Compile Include="frm_Student_Login.cs">
       <SubType>Form</SubType>
@@ -58,27 +64,30 @@
     <Compile Include="frm_Student_Login.Designer.cs">
       <DependentUpon>frm_Student_Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm_View_Student_List.cs">
+    <Compile Include="frm_View_All_Student_List.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm_View_Student_List.Designer.cs">
-      <DependentUpon>frm_View_Student_List.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Information_Of_Student_DBDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Information_Of_Student_DBDataSet.xsd</DependentUpon>
+    <Compile Include="frm_View_All_Student_List.Designer.cs">
+      <DependentUpon>frm_View_All_Student_List.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frm_Add_New_Student.resx">
-      <DependentUpon>frm_Add_New_Student.cs</DependentUpon>
+    <Compile Include="Student_Information_DBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Student_Information_DBDataSet.xsd</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="frm_Add_New_student.resx">
+      <DependentUpon>frm_Add_New_student.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Search_Student.resx">
+      <DependentUpon>frm_Search_Student.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_Student_Login.resx">
       <DependentUpon>frm_Student_Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm_View_Student_List.resx">
-      <DependentUpon>frm_View_Student_List.cs</DependentUpon>
+    <EmbeddedResource Include="frm_View_All_Student_List.resx">
+      <DependentUpon>frm_View_All_Student_List.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -89,17 +98,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="Information_Of_Student_DBDataSet.xsc">
-      <DependentUpon>Information_Of_Student_DBDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="Information_Of_Student_DBDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Information_Of_Student_DBDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Information_Of_Student_DBDataSet.xss">
-      <DependentUpon>Information_Of_Student_DBDataSet.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -109,6 +107,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Student_Information_DBDataSet.xsc">
+      <DependentUpon>Student_Information_DBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Student_Information_DBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Student_Information_DBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Student_Information_DBDataSet.xss">
+      <DependentUpon>Student_Information_DBDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -19,7 +19,7 @@ namespace Student_Management_System
 
         private void btn_Submit_Click(object sender, EventArgs e)
         {
-            if (((tb_Username.Text == "Admin") && (tb_Password.Text == "Admin1")) || ((tb_Username.Text == "A") && (tb_Password.Text == "A123")))
+            if (((tb_Username.Text == "Admin") && (tb_Password.Text == "Admin1")) || ((tb_Username.Text == "A") && (tb_Password.Text == "A123") ))
             {
                 MessageBox.Show("Login Successful", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
