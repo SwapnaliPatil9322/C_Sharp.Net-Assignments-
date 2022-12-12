@@ -1,0 +1,10 @@
+D:\Trial_Assignment_C#\Selection_Controls\bin\Debug\Selection_Controls.exe.config
+D:\Trial_Assignment_C#\Selection_Controls\bin\Debug\Selection_Controls.exe
+D:\Trial_Assignment_C#\Selection_Controls\bin\Debug\Selection_Controls.pdb
+D:\Trial_Assignment_C#\Selection_Controls\obj\Debug\Selection_Controls.csproj.AssemblyReference.cache
+D:\Trial_Assignment_C#\Selection_Controls\obj\Debug\Selection_Controls.frm_My_Controls.resources
+D:\Trial_Assignment_C#\Selection_Controls\obj\Debug\Selection_Controls.Properties.Resources.resources
+D:\Trial_Assignment_C#\Selection_Controls\obj\Debug\Selection_Controls.csproj.GenerateResource.cache
+D:\Trial_Assignment_C#\Selection_Controls\obj\Debug\Selection_Controls.csproj.CoreCompileInputs.cache
+D:\Trial_Assignment_C#\Selection_Controls\obj\Debug\Selection_Controls.exe
+D:\Trial_Assignment_C#\Selection_Controls\obj\Debug\Selection_Controls.pdb
