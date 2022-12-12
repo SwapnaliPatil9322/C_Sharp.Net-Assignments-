@@ -26,11 +26,11 @@ namespace Student_Management_System.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\SQLEXPRESS;Initial Catalog=Student_Information_DB;Integrated Securi" +
-            "ty=True")]
-        public string Student_Information_DBConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\SQLEXPRESS;Initial Catalog=Student_Details_DB;Integrated Security=T" +
+            "rue")]
+        public string Student_Details_DBConnectionString {
             get {
-                return ((string)(this["Student_Information_DBConnectionString"]));
+                return ((string)(this["Student_Details_DBConnectionString"]));
             }
         }
     }

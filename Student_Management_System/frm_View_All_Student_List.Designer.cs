@@ -34,17 +34,17 @@ namespace Student_Management_System
             this.btn_Add_New_Student = new System.Windows.Forms.Button();
             this.btn_Log_Out = new System.Windows.Forms.Button();
             this.dgv_Table = new System.Windows.Forms.DataGridView();
-            this.student_Information_DBDataSet = new Student_Management_System.Student_Information_DBDataSet();
-            this.studentInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.student_InformationTableAdapter = new Student_Management_System.Student_Information_DBDataSetTableAdapters.Student_InformationTableAdapter();
             this.rollNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dOBDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mobileNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.courseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.studentDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.student_Details_DBDataSet = new Student_Management_System.Student_Details_DBDataSet();
+            this.student_DetailsTableAdapter = new Student_Management_System.Student_Details_DBDataSetTableAdapters.Student_DetailsTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Table)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.student_Information_DBDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.studentInformationBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentDetailsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.student_Details_DBDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // lbl_View_All_Student_List
@@ -52,7 +52,7 @@ namespace Student_Management_System
             this.lbl_View_All_Student_List.AutoSize = true;
             this.lbl_View_All_Student_List.Font = new System.Drawing.Font("Cambria", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_View_All_Student_List.ForeColor = System.Drawing.Color.Blue;
-            this.lbl_View_All_Student_List.Location = new System.Drawing.Point(204, 31);
+            this.lbl_View_All_Student_List.Location = new System.Drawing.Point(225, 29);
             this.lbl_View_All_Student_List.Name = "lbl_View_All_Student_List";
             this.lbl_View_All_Student_List.Size = new System.Drawing.Size(481, 57);
             this.lbl_View_All_Student_List.TabIndex = 0;
@@ -60,12 +60,11 @@ namespace Student_Management_System
             // 
             // btn_Add_New_Student
             // 
-            this.btn_Add_New_Student.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_Add_New_Student.Font = new System.Drawing.Font("Cambria", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Add_New_Student.ForeColor = System.Drawing.Color.Green;
-            this.btn_Add_New_Student.Location = new System.Drawing.Point(284, 663);
+            this.btn_Add_New_Student.Location = new System.Drawing.Point(328, 647);
             this.btn_Add_New_Student.Name = "btn_Add_New_Student";
-            this.btn_Add_New_Student.Size = new System.Drawing.Size(345, 55);
+            this.btn_Add_New_Student.Size = new System.Drawing.Size(357, 71);
             this.btn_Add_New_Student.TabIndex = 1;
             this.btn_Add_New_Student.Text = "Add New Student";
             this.btn_Add_New_Student.UseVisualStyleBackColor = true;
@@ -73,12 +72,11 @@ namespace Student_Management_System
             // 
             // btn_Log_Out
             // 
-            this.btn_Log_Out.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_Log_Out.Font = new System.Drawing.Font("Cambria", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Log_Out.ForeColor = System.Drawing.Color.Red;
-            this.btn_Log_Out.Location = new System.Drawing.Point(780, 12);
+            this.btn_Log_Out.Location = new System.Drawing.Point(812, 3);
             this.btn_Log_Out.Name = "btn_Log_Out";
-            this.btn_Log_Out.Size = new System.Drawing.Size(188, 54);
+            this.btn_Log_Out.Size = new System.Drawing.Size(167, 61);
             this.btn_Log_Out.TabIndex = 2;
             this.btn_Log_Out.Text = "Log Out";
             this.btn_Log_Out.UseVisualStyleBackColor = true;
@@ -95,27 +93,13 @@ namespace Student_Management_System
             this.dOBDataGridViewTextBoxColumn,
             this.mobileNoDataGridViewTextBoxColumn,
             this.courseDataGridViewTextBoxColumn});
-            this.dgv_Table.DataSource = this.studentInformationBindingSource;
-            this.dgv_Table.Location = new System.Drawing.Point(30, 120);
+            this.dgv_Table.DataSource = this.studentDetailsBindingSource;
+            this.dgv_Table.Location = new System.Drawing.Point(12, 120);
             this.dgv_Table.Name = "dgv_Table";
             this.dgv_Table.RowHeadersWidth = 51;
             this.dgv_Table.RowTemplate.Height = 24;
-            this.dgv_Table.Size = new System.Drawing.Size(938, 507);
+            this.dgv_Table.Size = new System.Drawing.Size(958, 502);
             this.dgv_Table.TabIndex = 3;
-            // 
-            // student_Information_DBDataSet
-            // 
-            this.student_Information_DBDataSet.DataSetName = "Student_Information_DBDataSet";
-            this.student_Information_DBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // studentInformationBindingSource
-            // 
-            this.studentInformationBindingSource.DataMember = "Student_Information";
-            this.studentInformationBindingSource.DataSource = this.student_Information_DBDataSet;
-            // 
-            // student_InformationTableAdapter
-            // 
-            this.student_InformationTableAdapter.ClearBeforeFill = true;
             // 
             // rollNoDataGridViewTextBoxColumn
             // 
@@ -152,6 +136,20 @@ namespace Student_Management_System
             this.courseDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.courseDataGridViewTextBoxColumn.Name = "courseDataGridViewTextBoxColumn";
             // 
+            // studentDetailsBindingSource
+            // 
+            this.studentDetailsBindingSource.DataMember = "Student_Details";
+            this.studentDetailsBindingSource.DataSource = this.student_Details_DBDataSet;
+            // 
+            // student_Details_DBDataSet
+            // 
+            this.student_Details_DBDataSet.DataSetName = "Student_Details_DBDataSet";
+            this.student_Details_DBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // student_DetailsTableAdapter
+            // 
+            this.student_DetailsTableAdapter.ClearBeforeFill = true;
+            // 
             // frm_View_All_Student_List
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -168,8 +166,8 @@ namespace Student_Management_System
             this.Text = "View All Student List";
             this.Load += new System.EventHandler(this.frm_View_All_Student_List_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Table)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.student_Information_DBDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.studentInformationBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentDetailsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.student_Details_DBDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -181,9 +179,9 @@ namespace Student_Management_System
         private System.Windows.Forms.Button btn_Add_New_Student;
         private System.Windows.Forms.Button btn_Log_Out;
         private System.Windows.Forms.DataGridView dgv_Table;
-        private Student_Information_DBDataSet student_Information_DBDataSet;
-        private System.Windows.Forms.BindingSource studentInformationBindingSource;
-        private Student_Information_DBDataSetTableAdapters.Student_InformationTableAdapter student_InformationTableAdapter;
+        private Student_Details_DBDataSet student_Details_DBDataSet;
+        private System.Windows.Forms.BindingSource studentDetailsBindingSource;
+        private Student_Details_DBDataSetTableAdapters.Student_DetailsTableAdapter student_DetailsTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn rollNoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dOBDataGridViewTextBoxColumn;

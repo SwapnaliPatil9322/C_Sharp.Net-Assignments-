@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace Student_Management_System
 {
@@ -16,23 +17,56 @@ namespace Student_Management_System
         {
             InitializeComponent();
         }
+        SqlConnection Con = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=Student_Login_DB;Integrated Security=True");
+
+        void Con_Open()
+        {
+            if (Con.State != ConnectionState.Open)
+            {
+                Con.Open();
+            }
+        }
+
+        void Con_Close()
+        {
+            if (Con.State != ConnectionState.Closed)
+            {
+                Con.Close();
+            }
+        }
 
         private void btn_Submit_Click(object sender, EventArgs e)
         {
-            if (((tb_Username.Text == "Admin") && (tb_Password.Text == "Admin1")) || ((tb_Username.Text == "A") && (tb_Password.Text == "A123") ))
+            int Cnt = 0;
+            
+            Con_Open();
+            
+            SqlCommand Cmd = new SqlCommand();
+            Cmd.Connection = Con;
+            Cmd.CommandText = " Select Count(*) From Student_Login Where Uname = @Uname And Pwd = @Pwd";
+
+            Cmd.Parameters.Add("Uname", SqlDbType.NVarChar).Value = tb_Username.Text;
+            Cmd.Parameters.Add("Pwd", SqlDbType.NVarChar).Value = tb_Password.Text;
+
+            Cnt = Convert.ToInt32(Cmd.ExecuteScalar());
+
+            if ( Cnt > 0 )
             {
                 MessageBox.Show("Login Successful", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                
+                Shared_Class.Username = "Welcome " + tb_Username.Text;
+                
                 frm_Add_New_Student obj = new frm_Add_New_Student();
                 obj.Show();
                 this.Hide();
+
             }
             else
             {
-                lbl_Error.Text = "Invalid Username or Password";
+                lbl_Error.Text = "Invalid Usernane or Password";
                 lbl_Error.ForeColor = Color.Red;
             }
-
+           
             tb_Username.Clear();
             tb_Password.Clear();
 
@@ -40,6 +74,9 @@ namespace Student_Management_System
             btn_Submit.Enabled = false;
 
             tb_Username.Focus();
+
+            Con_Close();
+
 
         }
 

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
+
 namespace Student_Management_System
 {
     public partial class frm_Add_New_Student : Form
@@ -17,11 +18,11 @@ namespace Student_Management_System
         {
             InitializeComponent();
         }
-        SqlConnection Con = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=Information_Of_Student_DB;Integrated Security=True");
+        SqlConnection Con = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=Student_Details_DB;Integrated Security=True");
 
         void Con_Open()
         {
-            if (Con.State != ConnectionState.Open)
+            if (Con.State == ConnectionState.Closed)
             {
                 Con.Open();
             }
@@ -29,11 +30,13 @@ namespace Student_Management_System
 
         void Con_Close()
         {
-            if (Con.State != ConnectionState.Closed)
+            if (Con.State == ConnectionState.Open)
             {
                 Con.Close();
             }
         }
+
+
 
         private void Only_Numeric(object sender, KeyPressEventArgs e)
         {
@@ -50,15 +53,42 @@ namespace Student_Management_System
                 e.Handled = true;
             }
         }
-            void Clear_Controls()
+        int Auto_Incr()
+        {
+            int Cnt = 0;
+
+            Con_Open();
+            SqlCommand Cmd = new SqlCommand();
+            Cmd.Connection = Con;
+            Cmd.CommandText = "Select Count(*) From Student_Details";
+
+            Cnt = Convert.ToInt32(Cmd.ExecuteScalar());
+
+            if (Cnt > 0)
             {
-                tb_Roll_No.Text = "";
-                tb_Name.Clear();
-                tb_Mobile_No.Clear();
-                cmb_Course.SelectedIndex = -1;
-                dtp_DOB.Text = "01/06/2007";
+                Cmd.CommandText = "Select Max(Roll_No)From Student_Details";
+
+                Cnt = Convert.ToInt32(Cmd.ExecuteScalar()) + 1;
             }
-        
+            else
+            {
+                Cnt = 101;
+            }
+
+            Con_Close();
+
+            return Cnt;
+        }
+
+        void Clear_Controls()
+        {
+            tb_Roll_No.Text = Convert.ToString(Auto_Incr());
+
+            tb_Name.Clear();
+            tb_Mobile_No.Clear();
+            cmb_Course.SelectedIndex = -1;
+            dtp_DOB.Text = "1/1/2005";
+        }
 
         private void frm_Add_New_Student_Load(object sender, EventArgs e)
         {
@@ -71,12 +101,12 @@ namespace Student_Management_System
             Con_Open();
 
 
-            if (tb_Roll_No.Text != "" && tb_Name.Text != "" && tb_Mobile_No.Text != "" && cmb_Course.Text != "")
+            if (tb_Roll_No.Text != "" && tb_Name.Text != "" && tb_Mobile_No.TextLength == 10 && cmb_Course.Text != "")
             {
                 SqlCommand Cmd = new SqlCommand();
 
                 Cmd.Connection = Con;
-                Cmd.CommandText = "Insert Into Student_Info (Roll_No, Name, DOB, Mobile_No, Course) Values (@RNo, @Nm, @DOB, @MNo, @Course)";
+                Cmd.CommandText = "Insert Into Student_Details (Roll_No, Name, DOB, Mobile_No, Course) Values (@RNo, @Nm, @DOB, @MNo, @Course)";
 
 
                 Cmd.Parameters.Add("RNo", SqlDbType.Int).Value = tb_Roll_No.Text;
@@ -101,16 +131,29 @@ namespace Student_Management_System
 
         private void btn_View_Student_List_Click(object sender, EventArgs e)
         {
-            frm_View_Student_List obj = new frm_View_Student_List();
+            frm_View_All_Student_List obj = new frm_View_All_Student_List();
+            obj.Show();
+            this.Hide();
+
+        }
+
+        private void btn_Search_Student_Details_Click(object sender, EventArgs e)
+        {
+            frm_Search_Student_Details obj = new frm_Search_Student_Details();
             obj.Show();
             this.Hide();
         }
 
         private void btn_Log_Out_Click(object sender, EventArgs e)
         {
-            frm_Student_Login obj = new frm_Student_Login();
-            obj.Show();
-            this.Hide();
+            DialogResult Res = MessageBox.Show("Are You Shoure Want To Log Out?", "LOGOUT", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (Res == DialogResult.Yes)
+            {
+                frm_Student_Login obj = new frm_Student_Login();
+                obj.Show();
+                this.Hide();
+            }
         }
     }
 }

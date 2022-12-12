@@ -17,13 +17,6 @@ namespace Student_Management_System
             InitializeComponent();
         }
 
-        private void frm_View_All_Student_List_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'student_Information_DBDataSet.Student_Information' table. You can move, or remove it, as needed.
-            this.student_InformationTableAdapter.Fill(this.student_Information_DBDataSet.Student_Information);
-
-        }
-
         private void btn_Log_Out_Click(object sender, EventArgs e)
         {
             frm_Student_Login obj = new frm_Student_Login();
@@ -36,6 +29,13 @@ namespace Student_Management_System
             frm_Add_New_Student obj = new frm_Add_New_Student();
             obj.Show();
             this.Hide();
+        }
+
+        private void frm_View_All_Student_List_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'student_Details_DBDataSet.Student_Details' table. You can move, or remove it, as needed.
+            this.student_DetailsTableAdapter.Fill(this.student_Details_DBDataSet.Student_Details);
+
         }
     }
 }
