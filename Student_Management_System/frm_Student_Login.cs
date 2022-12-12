@@ -17,7 +17,7 @@ namespace Student_Management_System
         {
             InitializeComponent();
         }
-        SqlConnection Con = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=Student_Login_DB;Integrated Security=True");
+        SqlConnection Con = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=Student_Management_System_DB;Integrated Security=True");
 
         void Con_Open()
         {
@@ -26,7 +26,6 @@ namespace Student_Management_System
                 Con.Open();
             }
         }
-
         void Con_Close()
         {
             if (Con.State != ConnectionState.Closed)
@@ -38,35 +37,30 @@ namespace Student_Management_System
         private void btn_Submit_Click(object sender, EventArgs e)
         {
             int Cnt = 0;
-            
             Con_Open();
-            
             SqlCommand Cmd = new SqlCommand();
             Cmd.Connection = Con;
-            Cmd.CommandText = " Select Count(*) From Student_Login Where Uname = @Uname And Pwd = @Pwd";
+
+            Cmd.CommandText = "Select Count(*)From Login_Details Where Uname = @Uname And Pwd = @Pwd";
 
             Cmd.Parameters.Add("Uname", SqlDbType.NVarChar).Value = tb_Username.Text;
             Cmd.Parameters.Add("Pwd", SqlDbType.NVarChar).Value = tb_Password.Text;
 
             Cnt = Convert.ToInt32(Cmd.ExecuteScalar());
 
-            if ( Cnt > 0 )
+            if (Cnt > 0)
             {
                 MessageBox.Show("Login Successful", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
-                Shared_Class.Username = "Welcome " + tb_Username.Text;
-                
-                frm_Add_New_Student obj = new frm_Add_New_Student();
+                Shared_Class.Username = tb_Username.Text;
+                MDI_Management_System obj = new MDI_Management_System();
                 obj.Show();
                 this.Hide();
-
             }
             else
             {
-                lbl_Error.Text = "Invalid Usernane or Password";
+                lbl_Error.Text = "Invalid Username Or Password";
                 lbl_Error.ForeColor = Color.Red;
             }
-           
             tb_Username.Clear();
             tb_Password.Clear();
 
@@ -76,19 +70,6 @@ namespace Student_Management_System
             tb_Username.Focus();
 
             Con_Close();
-
-
-        }
-
-        private void tb_Username_TextChanged(object sender, EventArgs e)
-        {
-            lbl_Error.Visible = true;
-            tb_Password.Enabled = true;
-        }
-
-        private void tb_Password_TextChanged(object sender, EventArgs e)
-        {
-            btn_Submit.Enabled = true;
         }
     }
 }

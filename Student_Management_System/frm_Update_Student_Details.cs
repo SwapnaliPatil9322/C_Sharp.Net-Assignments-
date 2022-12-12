@@ -8,12 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-
 namespace Student_Management_System
 {
-    public partial class frm_Search_Student_Details : Form
+    public partial class frm_Update_Student_Details : Form
     {
-        public frm_Search_Student_Details()
+        public frm_Update_Student_Details()
         {
             InitializeComponent();
         }
@@ -34,13 +33,19 @@ namespace Student_Management_System
                 Con.Close();
             }
         }
+
         private void Only_Numeric(object sender, KeyPressEventArgs e)
         {
             if (!(Char.IsDigit(e.KeyChar) || (e.KeyChar == (Char)Keys.Back)))
             {
                 e.Handled = true;
             }
+            tb_Name.Enabled = true;
+            tb_Mobile_No.Enabled = true;
+            dtp_DOB.Enabled = true;
+            cmb_Course.Enabled = true;
         }
+
         private void Only_Text(object sender, KeyPressEventArgs e)
         {
             if (!(Char.IsLetter(e.KeyChar) || (e.KeyChar == (Char)Keys.Back) || (e.KeyChar == (Char)Keys.Space)))
@@ -56,10 +61,25 @@ namespace Student_Management_System
             cmb_Course.SelectedIndex = -1;
             dtp_DOB.Text = "01/06/2007";
         }
-        private void frm_Search_Student_Details_Load(object sender, EventArgs e)
+        void Enable_Controls()
+        {
+            tb_Roll_No.Enabled = false;
+        }
+        void Disable_Controls()
+        {
+            tb_Name.Enabled = false;
+            tb_Mobile_No.Enabled = false;
+            dtp_DOB.Enabled = false;
+            cmb_Course.Enabled = false;
+
+            tb_Roll_No.Enabled = true;
+        }
+
+        private void frm_Update_Student_Details_Load(object sender, EventArgs e)
         {
             tb_Roll_No.Focus();
         }
+
         private void btn_Search_Click(object sender, EventArgs e)
         {
             Con_Open();
@@ -79,15 +99,46 @@ namespace Student_Management_System
             }
             else
             {
-                MessageBox.Show("No Record Found", "InvaliRoll No");
+                MessageBox.Show("No Record Found", "Invalid Roll No");
                 tb_Roll_No.Clear();
             }
             Con_Close();
         }
+
         private void btn_Refresh_Click(object sender, EventArgs e)
         {
+            Disable_Controls();
             Clear_Controls();
+        }
 
+        private void btn_Update_Click(object sender, EventArgs e)
+        {
+            Con_Open();
+            if (tb_Roll_No.Text != "" && tb_Name.Text != "" && tb_Mobile_No.Text != "" && cmb_Course.Text != "")
+            {
+                SqlCommand Cmd = new SqlCommand();
+
+                Cmd.Connection = Con;
+                Cmd.CommandText = "Update Student_Information Set Name = @Nm, DOB = @DOB, Mobile_No = @Mno, Course = @Course Where Roll_No = @RNo";
+
+                Cmd.Parameters.Add("RNO", SqlDbType.Int).Value = tb_Roll_No.Text;
+                Cmd.Parameters.Add("Name", SqlDbType.VarChar).Value = tb_Name.Text;
+                Cmd.Parameters.Add("DOB", SqlDbType.Date).Value = dtp_DOB.Value.Date;
+                Cmd.Parameters.Add("MNo", SqlDbType.Decimal).Value = tb_Mobile_No.Text;
+                Cmd.Parameters.Add("Course", SqlDbType.NVarChar).Value = cmb_Course.Text;
+
+                Cmd.ExecuteNonQuery();
+                MessageBox.Show("Record Updated Successfully");
+
+                Clear_Controls();
+                Disable_Controls();
+            }
+            else
+            {
+                MessageBox.Show("1st Fill All Fields");
+            }
+            Con_Close();
         }
     }
+    
 }
